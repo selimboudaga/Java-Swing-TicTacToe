@@ -212,6 +212,9 @@ public final class TicTacToeClient extends JFrame implements Runnable {
                 dispose();
                 break;
             case "TIE":
+                new Tie();
+                dispose();
+                break;
             case "VICTORY":
                 // For other outcomes, just display the message
                 displayMessage(message + "\n"); // display the message
