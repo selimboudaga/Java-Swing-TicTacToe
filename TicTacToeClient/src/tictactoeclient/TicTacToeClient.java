@@ -1,8 +1,4 @@
-// Assignment 3, Tic Tac Toe Client/Server
-// Name: Cory Siebler
-// StudentID: 1000832292
-// Lecture Topic: 9 - Networking
-// Description: 
+
 package tictactoeclient;
 
 // Client side of client/server Tic-Tac-Toe program.
@@ -14,7 +10,7 @@ import java.net.InetAddress;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.util.Formatter;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
@@ -43,9 +39,8 @@ public final class TicTacToeClient extends JFrame implements Runnable {
     private boolean myTurn; // determines which client's turn it is
     private  String X_MARK = "X"; // mark for first client
 
-
     private final String O_MARK = "O"; // mark for second client
-
+    private boolean win;
 
 
 
@@ -68,7 +63,8 @@ public final class TicTacToeClient extends JFrame implements Runnable {
         chatArea.setForeground(Color.white);
         chatArea.setFont(new Font("Arial",Font.PLAIN,14));
         JScrollPane chatscroll = new JScrollPane(chatArea);
-        chatscroll.setBorder(BorderFactory.createLineBorder(new java.awt.Color(21, 22, 40))); // Set custom border color
+        chatscroll.getVerticalScrollBar().setUI(new MyCustomScrollBarUI());
+        chatscroll.setBorder(BorderFactory.createLineBorder(new java.awt.Color(33, 36, 65))); // Set custom border color
         chatscroll.setBackground(new java.awt.Color(21, 22, 40)); // Set background color
         chatscroll.setBounds(40,80,420,200);
         gamepanel.add(chatscroll);
@@ -95,7 +91,8 @@ public final class TicTacToeClient extends JFrame implements Runnable {
 
         
         JScrollPane scrollPane = new JScrollPane(displayArea);
-        scrollPane.setBorder(BorderFactory.createLineBorder(new java.awt.Color(21, 22, 40))); // Set custom border color
+        scrollPane.getVerticalScrollBar().setUI(new MyCustomScrollBarUI());
+        scrollPane.setBorder(BorderFactory.createLineBorder(new java.awt.Color(33, 36, 65))); // Set custom border color
         scrollPane.setBackground(new java.awt.Color(21, 22, 40)); // Set background color
         scrollPane.setBounds(40,332,420,80);
         gamepanel.add(scrollPane);
@@ -136,7 +133,7 @@ public final class TicTacToeClient extends JFrame implements Runnable {
         gamepanel.add(panel2);
         //add(panel2, BorderLayout.CENTER); // add container panel
 
-        setSize(900, 480); // set size of window
+        setSize(890, 480); // set size of window
         setResizable(false);
         setVisible(true); // show window
 
@@ -208,11 +205,19 @@ public final class TicTacToeClient extends JFrame implements Runnable {
                 myTurn = true; // now this client's turn
                 break;
             case "DEFEAT":
-            case "TIE":
-            case "VICTORY":
-                //  Game is over, display the results and stop game
+                // Display the message for the winner only
                 displayMessage(message + "\n"); // display the message
                 myTurn = false;
+                new Victory(); // Launch the Victory GUI for the winner
+                dispose();
+                break;
+            case "TIE":
+            case "VICTORY":
+                // For other outcomes, just display the message
+                displayMessage(message + "\n"); // display the message
+                myTurn = false;
+                new Deffeat();
+                dispose();
                 break;
             default:
                 displayMessage(message + "\n"); // display the message
@@ -289,6 +294,7 @@ public final class TicTacToeClient extends JFrame implements Runnable {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     super.mouseEntered(e);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                     Border mainborder=new RoundedBorder(10,Color.white);
                     setBorder(mainborder);
 
@@ -297,6 +303,7 @@ public final class TicTacToeClient extends JFrame implements Runnable {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     super.mouseExited(e);
+                    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     Border mainborder=new RoundedBorder(10,new java.awt.Color(21,22,40));
                     setBorder(mainborder);
 
@@ -351,6 +358,8 @@ public final class TicTacToeClient extends JFrame implements Runnable {
             g.setFont(new Font("Arial", Font.PLAIN, 32)); // Set font for X and O marks
             g.drawString(mark, 40, 60); // draw mark
         }
+
+
     }
 
     public class RoundedBorder implements Border {
@@ -383,5 +392,66 @@ public final class TicTacToeClient extends JFrame implements Runnable {
             return true;
         }
     }
+
+    class MyCustomScrollBarUI extends BasicScrollBarUI {
+        private final int THUMB_SIZE = 8; // Adjust this value for the desired scrollbar width
+
+        @Override
+        protected JButton createDecreaseButton(int orientation) {
+            JButton button = new JButton();
+            button.setPreferredSize(new Dimension(0, 0)); // Hides the decrease button
+            return button;
+        }
+
+        @Override
+        protected JButton createIncreaseButton(int orientation) {
+            JButton button = new JButton();
+            button.setPreferredSize(new Dimension(0, 0)); // Hides the increase button
+            return button;
+        }
+
+        @Override
+        protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            g.setColor(new java.awt.Color(33, 36, 65));
+            g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+
+            // Remove any border drawing
+            ((Graphics2D) g).setStroke(new BasicStroke(0)); // Set a stroke with 0 width
+            g.setColor(new java.awt.Color(33, 36, 65)); // Set the track color again to cover any remaining border
+            g.drawRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height); // Draw an empty rectangle to cover any remaining border
+        }
+
+        @Override
+        protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            Graphics2D g2 = (Graphics2D) g.create();
+
+            // Set rendering hints for smooth border
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+
+            g2.setColor(Color.white);
+            // Adjust the border radius for a smoother curve
+            int arc = THUMB_SIZE / 2;
+            g2.fillRoundRect(thumbBounds.x, thumbBounds.y, THUMB_SIZE, thumbBounds.height, 8, 8);
+
+            // Remove the border by not drawing it
+            // You can also set a stroke with a 0 width to achieve the same effect
+            // g2.setColor(Color.white); // Set the border color
+            // g2.setStroke(new BasicStroke(0)); // Set a stroke with 0 width
+
+            g2.dispose();
+        }
+
+
+
+        @Override
+        protected void setThumbBounds(int x, int y, int width, int height) {
+            // Adjust thumb bounds for the desired width
+            super.setThumbBounds(x, y, THUMB_SIZE, height);
+        }
+    }
+
+
 
 }
