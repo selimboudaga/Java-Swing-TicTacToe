@@ -1,11 +1,4 @@
-// Assignment 3, Tic Tac Toe Client/Server
-// Name: Cory Siebler
-// StudentID: 1000832292
-// Lecture Topic: 9 - Networking
-// Description: 
 package server;
-
-// Server side of client/server Tic-Tac-Toe program.
 import java.awt.BorderLayout;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -38,7 +31,6 @@ public class Server extends JFrame {
 
     // set up tic-tac-toe server and GUI that displays messages
     public Server() {
-        super("Tic-Tac-Toe Server"); // set title of window
 
         // create ExecutorService with a thread for each player
         runGame = Executors.newFixedThreadPool(2);
