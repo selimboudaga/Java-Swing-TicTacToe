@@ -1,4 +1,4 @@
-package tictactoeclient;
+package client;
 
 import javax.swing.*;
 import java.awt.*;

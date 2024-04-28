@@ -1,7 +1,6 @@
 
-package tictactoeclient;
+package client;
 
-// Client side of client/server Tic-Tac-Toe program.
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,12 +15,8 @@ import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 
-/**
- *
- * @author caustin
- * @author csiebler
- */
-public final class TicTacToeClient extends JFrame implements Runnable {
+
+public final class Client extends JFrame implements Runnable {
 
     private final JTextField idField; // textfield to display player's mark
     private final JTextArea displayArea; // JTextArea to display output
@@ -43,7 +38,7 @@ public final class TicTacToeClient extends JFrame implements Runnable {
 
 
     // set up user-interface and board
-    public TicTacToeClient(String host) {
+    public Client(String host) {
 
         ticTacToeHost = host; // set name of server
 
@@ -192,7 +187,7 @@ public final class TicTacToeClient extends JFrame implements Runnable {
                 // For other outcomes, just display the message
                 displayMessage(message + "\n"); // display the message
                 myTurn = false;
-                new Deffeat();
+                new Defeat();
                 dispose();
                 break;
             default:

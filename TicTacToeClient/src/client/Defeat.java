@@ -1,18 +1,18 @@
-package tictactoeclient;
+package client;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class Deffeat extends  JFrame{
-    public Deffeat() throws HeadlessException {
+public class Defeat extends  JFrame{
+    public Defeat() throws HeadlessException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(420,380);
         this.setResizable(false);
         JPanel mainpanel=new JPanel();
         mainpanel.setLayout(null);
         mainpanel.setBackground(new java.awt.Color(33, 36, 65));
-        JLabel loser=new JLabel("Deffeat!");
+        JLabel loser=new JLabel("Defeat!");
         loser.setFont(new Font("Arial Rounded MT Bold",Font.BOLD,38));
         loser.setForeground(Color.white);
         loser.setBounds(120,40,300,50);
@@ -31,6 +31,6 @@ public class Deffeat extends  JFrame{
     }
 
     public static void main(String[] args) {
-        Deffeat d=new Deffeat();
+        Defeat d=new Defeat();
     }
 }

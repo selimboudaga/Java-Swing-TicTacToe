@@ -3,7 +3,7 @@
 // StudentID: 1000832292
 // Lecture Topic: 9 - Networking
 // Description: 
-package tictactoeserver;
+package server;
 
 // Server side of client/server Tic-Tac-Toe program.
 import java.awt.BorderLayout;
@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-public class TicTacToeServer extends JFrame {
+public class Server extends JFrame {
 
     private final String[] board = new String[9]; // tic-tac-toe board
     private final JTextArea outputArea; // for outputting moves
@@ -37,7 +37,7 @@ public class TicTacToeServer extends JFrame {
     private final Condition otherPlayerTurn; // to wait for other player's turn
 
     // set up tic-tac-toe server and GUI that displays messages
-    public TicTacToeServer() {
+    public Server() {
         super("Tic-Tac-Toe Server"); // set title of window
 
         // create ExecutorService with a thread for each player
