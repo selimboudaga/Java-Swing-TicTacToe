@@ -21,18 +21,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-/**
- * Requirements:
- * <br>
- * 1)	The Server class shall include functionality to test for a win, loss, or
- * draw after each move.
- * <br>
- * 2)	The Server class shall send a message to each client that indicates the
- * result of the game when the game is over.
- *
- * @author caustin
- * @author csiebler
- */
 public class TicTacToeServer extends JFrame {
 
     private final String[] board = new String[9]; // tic-tac-toe board
@@ -269,7 +257,8 @@ public class TicTacToeServer extends JFrame {
                     // send message that other player connected
                     output.format("Other player connected. Your move.\n");
                     output.flush(); // flush output
-                } else {
+                }
+                else {
                     output.format("Player O connected, please wait\n");
                     output.flush(); // flush output
                 }

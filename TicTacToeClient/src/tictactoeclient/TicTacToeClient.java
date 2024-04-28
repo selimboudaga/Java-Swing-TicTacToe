@@ -25,8 +25,6 @@ public final class TicTacToeClient extends JFrame implements Runnable {
 
     private final JTextField idField; // textfield to display player's mark
     private final JTextArea displayArea; // JTextArea to display output
-    private final JTextArea chatArea; // JTextArea to display chat
-    private final JTextField chatfield;
     private final JPanel boardPanel; // panel for tic-tac-toe board
     private final JPanel panel2; // panel to hold board
     private final Square[][] board; // tic-tac-toe board
@@ -54,30 +52,6 @@ public final class TicTacToeClient extends JFrame implements Runnable {
         gamepanel.setBackground(new java.awt.Color(33, 36, 65));
         gamepanel.setLayout(null);
         add(gamepanel);
-        //chat Area styling
-        chatArea=new JTextArea(4,30);
-        chatArea.setEditable(false);
-        Border chatborder=new RoundedBorder(10,new java.awt.Color(21, 22, 40));
-        chatArea.setBorder(chatborder);
-        chatArea.setBackground(new java.awt.Color(21, 22, 40));
-        chatArea.setForeground(Color.white);
-        chatArea.setFont(new Font("Arial",Font.PLAIN,14));
-        JScrollPane chatscroll = new JScrollPane(chatArea);
-        chatscroll.getVerticalScrollBar().setUI(new MyCustomScrollBarUI());
-        chatscroll.setBorder(BorderFactory.createLineBorder(new java.awt.Color(33, 36, 65))); // Set custom border color
-        chatscroll.setBackground(new java.awt.Color(21, 22, 40)); // Set background color
-        chatscroll.setBounds(40,80,420,200);
-        gamepanel.add(chatscroll);
-
-        chatfield=new JTextField();
-        Border chatfieldborder=new RoundedBorder(1,Color.white);
-        chatfield.setBorder(chatfieldborder);
-        chatfield.setBackground(new java.awt.Color(21, 22, 40));
-        chatfield.setForeground(Color.white);
-        chatfield.setFont(new Font("Arial",Font.PLAIN,14));
-        chatfield.setBounds(40,280,420,40);
-        gamepanel.add(chatfield);
-
 
         //display Area Styling
         displayArea = new JTextArea(4, 30); // set up JTextArea
@@ -94,10 +68,9 @@ public final class TicTacToeClient extends JFrame implements Runnable {
         scrollPane.getVerticalScrollBar().setUI(new MyCustomScrollBarUI());
         scrollPane.setBorder(BorderFactory.createLineBorder(new java.awt.Color(33, 36, 65))); // Set custom border color
         scrollPane.setBackground(new java.awt.Color(21, 22, 40)); // Set background color
-        scrollPane.setBounds(40,332,420,80);
+        scrollPane.setBounds(24,445,370,100);
         gamepanel.add(scrollPane);
         //add(scrollPane, BorderLayout.SOUTH);
-
 
         boardPanel = new JPanel(); // set up panel for squares in board
         boardPanel.setLayout(new GridLayout(3, 3, 10, 10));
@@ -122,18 +95,18 @@ public final class TicTacToeClient extends JFrame implements Runnable {
         idField.setBackground(new java.awt.Color(33, 36, 65));
         idField.setBorder(new RoundedBorder(0,new java.awt.Color(33, 36, 65)));
         idField.setFont(new Font("Arial",Font.BOLD,19));
-        idField.setBounds(380,30,800,20);
+        idField.setBounds(120,30,800,20);
         gamepanel.add(idField);
         //add(idField, BorderLayout.NORTH);
 
         panel2 = new JPanel(); // set up panel to contain boardPanel
         panel2.setBackground(new java.awt.Color(33, 36, 65));
         panel2.add(boardPanel, BorderLayout.CENTER); // add board panel
-        panel2.setBounds(420,82,500,500);
+        panel2.setBounds(0,80,420,500);
         gamepanel.add(panel2);
         //add(panel2, BorderLayout.CENTER); // add container panel
 
-        setSize(890, 480); // set size of window
+        setSize(440, 610); // set size of window
         setResizable(false);
         setVisible(true); // show window
 
