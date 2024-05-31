@@ -57,13 +57,9 @@ First, start the server by running the `TicTacToeServerTest` file:
 
 Next, run the `TicTacToeClientTest` file twice to start two client instances. Make sure you allow multiple instances for the client while running:
 
-- Client for Player X:
+- Client for one of the players ,(Player X's view):
 
 ![Player X Connected](https://github.com/selimboudaga/Java-Swing-TicTacToe/assets/159728726/95e6f2f2-a693-4a05-8dae-99c4eba59665)
-
-- Client for Player O:
-
-![Player O Connected](https://github.com/selimboudaga/Java-Swing-TicTacToe/assets/159728726/17aef668-eaeb-40df-8853-1dbbdda52b9f)
 
 ### Step 3: Start Playing
 
@@ -72,10 +68,6 @@ Once both clients are connected, you can start playing the game. Enjoy!
 - Gameplay Screen (Player X's view):
 
 ![Gameplay Player X](https://github.com/selimboudaga/Java-Swing-TicTacToe/assets/159728726/755e647e-84a6-497a-a838-bb8738862616)
-
-- Gameplay Screen (Player O's view):
-
-![Gameplay Player O](https://github.com/selimboudaga/Java-Swing-TicTacToe/assets/159728726/5d5c8b99-aeee-441f-bf06-057b6d45e8fc)
 
 ## Contributing
 
